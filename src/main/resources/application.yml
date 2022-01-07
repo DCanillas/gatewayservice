@@ -1,0 +1,17 @@
+server:
+  port: 9000
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: product-service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/v1/product/**, /api/v1/category/**, /api/v1/order/**, /api/v1/customer/**
+        - id: recommendation-service
+          uri: http://localhost:9090
+          predicates:
+            - Path=/api/v1/recommendation/**

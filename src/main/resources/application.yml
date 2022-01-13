@@ -1,6 +1,8 @@
 server:
   port: 9000
 spring:
+  application:
+    name: gateway-service
   cloud:
     gateway:
       discovery:
@@ -8,10 +10,10 @@ spring:
           enabled: true
       routes:
         - id: product-service
-          uri: http://localhost:8080
+          uri: lb://product-service
           predicates:
             - Path=/api/v1/product/**, /api/v1/category/**, /api/v1/order/**, /api/v1/customer/**
         - id: recommendation-service
-          uri: http://localhost:9090
+          uri: lb://recommendation-service
           predicates:
             - Path=/api/v1/recommendation/**

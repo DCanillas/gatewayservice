@@ -17,3 +17,9 @@ spring:
           uri: lb://recommendation-service
           predicates:
             - Path=/api/v1/recommendation/**
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
